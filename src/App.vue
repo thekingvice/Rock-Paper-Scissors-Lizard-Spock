@@ -1,12 +1,17 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Game from "./components/Game.vue";
+</script>
 
 <template>
   <section class="ScoreWrapper">
-    <img class="Logo" src="public/images/logo-bonus.svg" alt="logo" />
+    <img class="Logo" src="./assets/logo-bonus.svg" alt="logo" />
     <div class="ScoreCard">
       <div class="ScoreCard__Text">SCORE</div>
       <div class="Score">01</div>
     </div>
+  </section>
+  <section class="GameField">
+    <Game />
   </section>
   <button class="PlayButton">PLAY AGAIN</button>
 </template>
@@ -41,6 +46,11 @@
   width: 7rem;
 }
 
+.GameField {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .PlayButton {
   padding: 0.5rem 3rem;
   border-radius: 0.25rem;
