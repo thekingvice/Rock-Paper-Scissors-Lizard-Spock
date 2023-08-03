@@ -18,7 +18,7 @@
       >
         <img
           class="Game__OptionButtonIcon"
-          src="../assets/icon-scissors.svg"
+          src="/images/icon-scissors.svg"
           alt="scissors"
         /></button
       ><button
@@ -27,13 +27,13 @@
       >
         <img
           class="Game__OptionButtonIcon"
-          src="../assets/icon-paper.svg"
+          src="/images/icon-paper.svg"
           alt="paper"
         /></button
       ><button class="Game__OptionButton Rock" v-on:click="HandlePick('Rock')">
         <img
           class="Game__OptionButtonIcon"
-          src="../assets/icon-rock.svg"
+          src="/images/icon-rock.svg"
           alt="rock"
         /></button
       ><button
@@ -42,7 +42,7 @@
       >
         <img
           class="Game__OptionButtonIcon"
-          src="../assets/icon-lizard.svg"
+          src="/images/icon-lizard.svg"
           alt=""
         /></button
       ><button
@@ -51,7 +51,7 @@
       >
         <img
           class="Game__OptionButtonIcon"
-          src="../assets/icon-spock.svg"
+          src="/images/icon-spock.svg"
           alt="spock"
         />
       </button>
@@ -79,7 +79,7 @@
       >
         <img
           class="Game__OptionButtonIcon"
-          src="../assets/icon-scissors.svg"
+          :src="OptionData[Player2].src"
           alt="opponent"
         />
       </button>
@@ -104,23 +104,23 @@ type OptionData = {
 
 const OptionData: OptionData = {
   Rock: {
-    src: "../assets/icon-rock.svg",
+    src: "/images/icon-rock.svg",
     Color: "hsl(349, 71%, 52%)",
   },
   Paper: {
-    src: "../assets/icon-paper.svg",
+    src: "/images/icon-paper.svg",
     Color: "hsl(230, 89%, 62%)",
   },
   Scissors: {
-    src: "../assets/icon-scissors.svg",
+    src: "/images/icon-scissors.svg",
     Color: "hsl(39, 89%, 49%)",
   },
   Lizard: {
-    src: "../assets/icon-lizard.svg",
+    src: "/images/icon-lizard.svg",
     Color: "hsl(261, 73%, 60%)",
   },
   Spock: {
-    src: "../assets/icon-spock.svg",
+    src: "/images/icon-spock.svg",
     Color: "hsl(189, 59%, 53%)",
   },
 };
