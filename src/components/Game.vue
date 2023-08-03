@@ -91,6 +91,8 @@ import { ref } from "vue";
 
 const IsVisible = ref(true);
 
+const props: any = defineProps({ ScoreCounter: Number });
+
 const Player1 = ref("Rock");
 
 const Player2 = ref("Paper");

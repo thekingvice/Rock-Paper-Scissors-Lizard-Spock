@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import Game from "./components/Game.vue";
+
+import { ref } from "vue";
+
+const ScoreCounter = ref(0);
 </script>
 
 <template>
@@ -7,11 +11,11 @@ import Game from "./components/Game.vue";
     <img class="Logo" src="./assets/logo-bonus.svg" alt="logo" />
     <div class="ScoreCard">
       <div class="ScoreCard__Text">SCORE</div>
-      <div class="Score">01</div>
+      <div class="Score">{{ ScoreCounter }}</div>
     </div>
   </section>
   <section class="GameField">
-    <Game />
+    <Game :ScoreCounter="ScoreCounter" />
   </section>
   <button class="PlayButton">PLAY AGAIN</button>
 </template>
