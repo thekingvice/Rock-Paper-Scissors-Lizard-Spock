@@ -21,25 +21,34 @@
           src="../assets/icon-scissors.svg"
           alt="scissors"
         /></button
-      ><button class="Game__OptionButton Paper">
+      ><button
+        class="Game__OptionButton Paper"
+        v-on:click="HandlePick('Paper')"
+      >
         <img
           class="Game__OptionButtonIcon"
           src="../assets/icon-paper.svg"
           alt="paper"
         /></button
-      ><button class="Game__OptionButton Rock">
+      ><button class="Game__OptionButton Rock" v-on:click="HandlePick('Rock')">
         <img
           class="Game__OptionButtonIcon"
           src="../assets/icon-rock.svg"
           alt="rock"
         /></button
-      ><button class="Game__OptionButton Lizard">
+      ><button
+        class="Game__OptionButton Lizard"
+        v-on:click="HandlePick('Lizard')"
+      >
         <img
           class="Game__OptionButtonIcon"
           src="../assets/icon-lizard.svg"
           alt=""
         /></button
-      ><button class="Game__OptionButton Spock">
+      ><button
+        class="Game__OptionButton Spock"
+        v-on:click="HandlePick('Spock')"
+      >
         <img
           class="Game__OptionButtonIcon"
           src="../assets/icon-spock.svg"
@@ -56,15 +65,18 @@
     >
       <button
         class="Game__Picks"
-        :style="{ borderColor: OptionData.Rock.Color }"
+        :style="{ borderColor: OptionData[Player1].Color }"
       >
         <img
           class="Game__OptionButtonIcon"
-          src="../assets/icon-scissors.svg"
+          :src="OptionData[Player1].src"
           alt="you"
         />
       </button>
-      <button class="Game__Picks">
+      <button
+        class="Game__Picks"
+        :style="{ borderColor: OptionData[Player2].Color }"
+      >
         <img
           class="Game__OptionButtonIcon"
           src="../assets/icon-scissors.svg"
@@ -79,47 +91,54 @@ import { ref } from "vue";
 
 const IsVisible = ref(true);
 
-const Player1 = ref("");
+const Player1 = ref("Rock");
 
-const Player2 = ref("");
+const Player2 = ref("Paper");
 
-const OptionData = {
+type OptionData = {
+  [key: string]: {
+    src: string;
+    Color: string;
+  };
+};
+
+const OptionData: OptionData = {
   Rock: {
-    Name: "Rock",
     src: "../assets/icon-rock.svg",
     Color: "hsl(349, 71%, 52%)",
   },
   Paper: {
-    Name: "Paper",
     src: "../assets/icon-paper.svg",
-    Color: "hsl(349, 71%, 52%)",
+    Color: "hsl(230, 89%, 62%)",
   },
   Scissors: {
-    Name: "Scissors",
     src: "../assets/icon-scissors.svg",
-    Color: "hsl(349, 71%, 52%)",
+    Color: "hsl(39, 89%, 49%)",
   },
   Lizard: {
-    Name: "Lizard",
     src: "../assets/icon-lizard.svg",
-    Color: "hsl(349, 71%, 52%)",
+    Color: "hsl(261, 73%, 60%)",
   },
   Spock: {
-    Name: "Spock",
     src: "../assets/icon-spock.svg",
-    Color: "hsl(349, 71%, 52%)",
+    Color: "hsl(189, 59%, 53%)",
   },
 };
 
 function HandlePick(Option: string) {
   Player1.value = Option;
   FindWinner(Player1.value);
+  console.log(OptionData[Player1.value].src);
 }
 
 function FindWinner(P1: string) {
   const Options = ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
 
-  const Winning = {
+  type WinningOptions = {
+    [key: string]: string[];
+  };
+
+  const Winning: WinningOptions = {
     Rock: ["Scissors", "Lizard"],
     Paper: ["Rock", "Spock"],
     Scissors: ["Lizard", "Paper"],
