@@ -73,6 +73,13 @@
           alt="you"
         />
       </button>
+      <div class="Game__ResultWrapper">
+        <h1>{{ Result }}</h1>
+        <button class="Game__PlayButton" v-on:click="HandlePlayAgain">
+          PLAY AGAIN
+        </button>
+      </div>
+
       <button
         class="Game__Picks"
         :style="{ borderColor: OptionData[Player2].Color }"
@@ -93,9 +100,15 @@ const IsVisible = ref(true);
 
 const props: any = defineProps({ ScoreCounter: Number });
 
+const emits = defineEmits(["UpdateScore", "ResetScore"]);
+
 const Player1 = ref("Rock");
 
 const Player2 = ref("Paper");
+
+const IsLoss = ref(false);
+
+const Result = ref("");
 
 type OptionData = {
   [key: string]: {
@@ -127,10 +140,18 @@ const OptionData: OptionData = {
   },
 };
 
+function HandlePlayAgain() {
+  if (IsLoss.value) {
+    IsLoss.value = !IsLoss.value;
+    emits("ResetScore");
+  }
+  IsVisible.value = !IsVisible.value;
+}
+
 function HandlePick(Option: string) {
   Player1.value = Option;
   FindWinner(Player1.value);
-  console.log(OptionData[Player1.value].src);
+  console.log(IsLoss.value);
 }
 
 function FindWinner(P1: string) {
@@ -156,9 +177,14 @@ function FindWinner(P1: string) {
 
   if (P1 === P2) {
     console.log("It's a Tie!");
+    Result.value = "TIE.";
   } else if (Winning[P1].includes(P2)) {
     console.log("You Win!");
+    Result.value = "YOU WIN!";
+    emits("UpdateScore");
   } else {
+    Result.value = "YOU LOSE.";
+    IsLoss.value = true;
     console.log("You Lose...");
   }
 }
@@ -172,7 +198,7 @@ function FindWinner(P1: string) {
   position: relative;
   display: flex;
   justify-content: center;
-  transition: all 2s;
+  transition: all 0.5s;
 }
 .Game__OptionButton {
   color: var(--white);
@@ -185,6 +211,7 @@ function FindWinner(P1: string) {
   border-radius: 5rem;
   background: var(--white);
   border: 0.75rem solid grey;
+  cursor: pointer;
 }
 
 .Game__OptionButtonIcon {
@@ -229,7 +256,17 @@ function FindWinner(P1: string) {
 .Game__Results {
   display: flex;
   gap: 2rem;
-  transition: all 2s;
+  transition: all 0.5s;
+  align-items: center;
+}
+
+.Game__ResultWrapper {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-size: 2rem;
+  align-items: center;
+  gap: 1rem;
 }
 
 .Game__Picks {
@@ -242,5 +279,14 @@ function FindWinner(P1: string) {
   border-radius: 5rem;
   background: var(--white);
   border: 0.75rem solid grey;
+}
+
+.Game__PlayButton {
+  font-size: 1rem;
+  background: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: var(--dark-text);
 }
 </style>

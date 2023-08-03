@@ -4,20 +4,37 @@ import Game from "./components/Game.vue";
 import { ref } from "vue";
 
 const ScoreCounter = ref(0);
+
+function UpdateScore() {
+  ScoreCounter.value += 1;
+}
+
+function ResetScore() {
+  ScoreCounter.value = 0;
+}
 </script>
 
 <template>
   <section class="ScoreWrapper">
-    <img class="Logo" src="./assets/logo-bonus.svg" alt="logo" />
+    <img
+      class="Logo"
+      v-on:click="UpdateScore"
+      src="./assets/logo-bonus.svg"
+      alt="logo"
+    />
     <div class="ScoreCard">
       <div class="ScoreCard__Text">SCORE</div>
       <div class="Score">{{ ScoreCounter }}</div>
     </div>
   </section>
   <section class="GameField">
-    <Game :ScoreCounter="ScoreCounter" />
+    <Game
+      :ScoreCounter.sync="ScoreCounter"
+      @UpdateScore="UpdateScore"
+      @ResetScore="ResetScore"
+    />
   </section>
-  <button class="PlayButton">PLAY AGAIN</button>
+  <button class="Rules">Rules</button>
 </template>
 
 <style scoped>
@@ -54,11 +71,5 @@ const ScoreCounter = ref(0);
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-.PlayButton {
-  padding: 0.5rem 3rem;
-  border-radius: 0.25rem;
-  background: var(--white);
-  color: var(--dark-text);
 }
 </style>
