@@ -34,7 +34,22 @@ function ResetScore() {
       @ResetScore="ResetScore"
     />
   </section>
-  <button class="Rules">RULES</button>
+  <button class="Rules">
+    RULES
+    <div class="Rules__DiagramWrapper">
+      <div class="Rules__Modal">
+        <p class="Rules__CloseWrapper">
+          Rules
+          <img src="./assets/icon-close.svg" alt="" class="Rules__Close" />
+        </p>
+        <img
+          src="./assets/image-rules-bonus.svg"
+          alt="rules"
+          class="Rules__Diagram"
+        />
+      </div>
+    </div>
+  </button>
 </template>
 
 <style scoped>
@@ -84,5 +99,39 @@ function ResetScore() {
 .Rules:hover {
   background: var(--white);
   color: var(--dark-text);
+}
+
+.Rules__DiagramWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Rules__Diagram {
+}
+
+.Rules__CloseWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  width: 100%;
+}
+
+.Rules__Modal {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  max-width: 25rem;
+  width: 100%;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 </style>
