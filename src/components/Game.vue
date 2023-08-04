@@ -43,7 +43,7 @@
         <img
           class="Game__OptionButtonIcon"
           src="/images/icon-lizard.svg"
-          alt=""
+          alt="lizard"
         /></button
       ><button
         class="Game__OptionButton Spock"
@@ -63,33 +63,39 @@
         visibility: IsVisible ? 'hidden' : 'visible',
       }"
     >
-      <button
-        class="Game__Picks"
-        :style="{ borderColor: OptionData[Player1].Color }"
-      >
-        <img
-          class="Game__OptionButtonIcon"
-          :src="OptionData[Player1].src"
-          alt="you"
-        />
-      </button>
+      <div class="Game__PicksWrapper">
+        <p>YOU PICKED</p>
+        <button
+          class="Game__Picks"
+          :style="{ borderColor: OptionData[Player1].Color }"
+        >
+          <img
+            class="Game__OptionButtonIcon"
+            :src="OptionData[Player1].src"
+            alt="you"
+          />
+        </button>
+      </div>
+
       <div class="Game__ResultWrapper">
         <h1>{{ Result }}</h1>
         <button class="Game__PlayButton" v-on:click="HandlePlayAgain">
           PLAY AGAIN
         </button>
       </div>
-
-      <button
-        class="Game__Picks"
-        :style="{ borderColor: OptionData[Player2].Color }"
-      >
-        <img
-          class="Game__OptionButtonIcon"
-          :src="OptionData[Player2].src"
-          alt="opponent"
-        />
-      </button>
+      <div class="Game__PicksWrapper">
+        <p>THE HOUSE PICKED</p>
+        <button
+          class="Game__Picks"
+          :style="{ borderColor: OptionData[Player2].Color }"
+        >
+          <img
+            class="Game__OptionButtonIcon"
+            :src="OptionData[Player2].src"
+            alt="opponent"
+          />
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -267,6 +273,7 @@ function FindWinner(P1: string) {
   font-size: 2rem;
   align-items: center;
   gap: 1rem;
+  white-space: nowrap;
 }
 
 .Game__Picks {
@@ -281,6 +288,14 @@ function FindWinner(P1: string) {
   border: 0.75rem solid grey;
 }
 
+.Game__PicksWrapper {
+  display: flex;
+  flex-direction: column;
+  color: var(--white);
+  align-items: center;
+  gap: 1rem;
+}
+
 .Game__PlayButton {
   font-size: 1rem;
   background: var(--white);
@@ -288,5 +303,9 @@ function FindWinner(P1: string) {
   border-radius: 0.5rem;
   cursor: pointer;
   color: var(--dark-text);
+}
+
+.Game__PlayButton:hover {
+  box-shadow: -0px 0px 5px 3px rgba(255, 255, 255, 0.5);
 }
 </style>

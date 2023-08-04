@@ -80,4 +80,9 @@ function ResetScore() {
   border-radius: 0.5rem;
   cursor: pointer;
 }
+
+.Rules:hover {
+  background: var(--white);
+  color: var(--dark-text);
+}
 </style>
