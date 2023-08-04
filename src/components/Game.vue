@@ -294,6 +294,7 @@ function FindWinner(P1: string) {
   color: var(--white);
   align-items: center;
   gap: 1rem;
+  white-space: nowrap;
 }
 
 .Game__PlayButton {
@@ -307,5 +308,23 @@ function FindWinner(P1: string) {
 
 .Game__PlayButton:hover {
   box-shadow: -0px 0px 5px 3px rgba(255, 255, 255, 0.5);
+}
+
+@media only screen and (max-width: 600px) {
+  .Game {
+    --percentage: 0.5rem;
+  }
+  .Game__OptionButton {
+    width: 5rem;
+    height: 5rem;
+  }
+  .Game__OptionButtonIcon {
+    width: 1.5rem;
+  }
+
+  .Game__Picks {
+    width: 5rem;
+    height: 5rem;
+  }
 }
 </style>
