@@ -260,10 +260,12 @@ function FindWinner(P1: string) {
 }
 
 .Game__Results {
-  display: flex;
-  gap: 2rem;
+  gap: 1rem;
   transition: all 0.5s;
   align-items: center;
+  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .Game__ResultWrapper {
@@ -314,10 +316,30 @@ function FindWinner(P1: string) {
   .Game {
     --percentage: 0.5rem;
   }
+
   .Game__OptionButton {
     width: 5rem;
     height: 5rem;
+    border: 0.5rem solid;
   }
+  .Scissors {
+    border-color: hsl(39, 89%, 49%);
+  }
+  .Paper {
+    border-color: hsl(230, 89%, 62%);
+  }
+  .Rock {
+    border-color: hsl(349, 71%, 52%);
+  }
+
+  .Lizard {
+    border-color: hsl(261, 73%, 60%);
+  }
+
+  .Spock {
+    border-color: hsl(189, 59%, 53%);
+  }
+
   .Game__OptionButtonIcon {
     width: 1.5rem;
   }
@@ -325,6 +347,7 @@ function FindWinner(P1: string) {
   .Game__Picks {
     width: 5rem;
     height: 5rem;
+    border: 0.5rem solid;
   }
 }
 </style>
