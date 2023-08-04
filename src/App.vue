@@ -34,7 +34,7 @@ function ResetScore() {
       @ResetScore="ResetScore"
     />
   </section>
-  <button class="Rules">Rules</button>
+  <button class="Rules">RULES</button>
 </template>
 
 <style scoped>
@@ -71,5 +71,13 @@ function ResetScore() {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.Rules {
+  color: var(--white);
+  border: 2px solid hsl(217, 16%, 45%);
+  padding: 0.5rem 2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
 }
 </style>
