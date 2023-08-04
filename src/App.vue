@@ -5,12 +5,19 @@ import { ref } from "vue";
 
 const ScoreCounter = ref(0);
 
+const RulesIsVisible = ref(false);
+
 function UpdateScore() {
   ScoreCounter.value += 1;
 }
 
 function ResetScore() {
   ScoreCounter.value = 0;
+}
+
+function HandleRulesVisibility() {
+  RulesIsVisible.value = !RulesIsVisible.value;
+  console.log(RulesIsVisible.value);
 }
 </script>
 
@@ -34,22 +41,31 @@ function ResetScore() {
       @ResetScore="ResetScore"
     />
   </section>
-  <button class="Rules">
-    RULES
-    <div class="Rules__DiagramWrapper">
-      <div class="Rules__Modal">
-        <p class="Rules__CloseWrapper">
-          Rules
-          <img src="./assets/icon-close.svg" alt="" class="Rules__Close" />
-        </p>
+  <button class="Rules" v-on:click="HandleRulesVisibility">RULES</button>
+  <div
+    class="Rules__DiagramWrapper"
+    :style="{
+      display: RulesIsVisible ? 'flex' : 'none',
+      zIndex: RulesIsVisible ? '1' : '-1',
+    }"
+  >
+    <div class="Rules__Modal">
+      <p class="Rules__CloseWrapper">
+        RULES
         <img
-          src="./assets/image-rules-bonus.svg"
-          alt="rules"
-          class="Rules__Diagram"
+          src="./assets/icon-close.svg"
+          alt="close-rules"
+          class="Rules__Close"
+          v-on:click="HandleRulesVisibility"
         />
-      </div>
+      </p>
+      <img
+        src="./assets/image-rules-bonus.svg"
+        alt="rules"
+        class="Rules__Diagram"
+      />
     </div>
-  </button>
+  </div>
 </template>
 
 <style scoped>
@@ -110,21 +126,19 @@ function ResetScore() {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.Rules__Diagram {
+  background: rgba(0, 0, 0, 0.25);
 }
 
 .Rules__CloseWrapper {
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 0 1rem;
   width: 100%;
 }
 
 .Rules__Modal {
   background: var(--white);
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 0.5rem;
   max-width: 25rem;
   width: 100%;
@@ -133,5 +147,14 @@ function ResetScore() {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  font-size: 2rem;
+  color: var(--dark-text);
+}
+
+.Rules__Close {
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+  align-self: center;
 }
 </style>
