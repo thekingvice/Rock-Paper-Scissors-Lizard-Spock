@@ -98,7 +98,7 @@ import { ref } from "vue";
 
 const IsVisible = ref(true);
 
-const props: any = defineProps({ ScoreCounter: Number });
+// const props: any = defineProps({ ScoreCounter: Number });
 
 const emits = defineEmits(["UpdateScore", "ResetScore"]);
 
@@ -263,7 +263,7 @@ function FindWinner(P1: string) {
 .Game__ResultWrapper {
   display: flex;
   flex-direction: column;
-  color: white;
+  color: var(--white);
   font-size: 2rem;
   align-items: center;
   gap: 1rem;
