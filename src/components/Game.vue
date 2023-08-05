@@ -205,7 +205,6 @@ function FindWinner(P1: string) {
   display: flex;
   justify-content: center;
   transition: all 0.5s;
-  top: 5rem;
 }
 .Game__OptionButton {
   color: var(--white);
@@ -350,24 +349,28 @@ function FindWinner(P1: string) {
     height: 5rem;
     border: 0.5rem solid;
   }
-}
 
-.Game__Results {
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-}
+  .Game__Results {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
 
-.Game__ResultWrapper {
-  grid-column: 1 / span 2;
-}
+  .Game__ResultWrapper {
+    grid-column: 1 / span 2;
+  }
 
-.Game__You {
-  grid-column: 1;
-  grid-row: 1;
-}
+  .Game__You {
+    grid-column: 1;
+    grid-row: 1;
+  }
 
-.Game__House {
-  grid-column: 2;
-  grid-row: 1;
+  .Game__House {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .Game__Wrapper {
+    top: 5rem;
+  }
 }
 </style>
