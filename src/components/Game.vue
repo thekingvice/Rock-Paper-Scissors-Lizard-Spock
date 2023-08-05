@@ -157,7 +157,6 @@ function HandlePlayAgain() {
 function HandlePick(Option: string) {
   Player1.value = Option;
   FindWinner(Player1.value);
-  console.log(IsLoss.value);
 }
 
 function FindWinner(P1: string) {
@@ -179,19 +178,14 @@ function FindWinner(P1: string) {
 
   Player2.value = P2;
 
-  console.log(`You: ${P1}, Opponent: ${P2}`);
-
   if (P1 === P2) {
-    console.log("It's a Tie!");
     Result.value = "TIE.";
   } else if (Winning[P1].includes(P2)) {
-    console.log("You Win!");
     Result.value = "YOU WIN!";
     emits("UpdateScore");
   } else {
     Result.value = "YOU LOSE.";
     IsLoss.value = true;
-    console.log("You Lose...");
   }
 }
 </script>

@@ -17,7 +17,6 @@ function ResetScore() {
 
 function HandleRulesVisibility() {
   RulesIsVisible.value = !RulesIsVisible.value;
-  console.log(RulesIsVisible.value);
 }
 </script>
 
