@@ -104,9 +104,7 @@ import { ref } from "vue";
 
 const IsVisible = ref(true);
 
-// const props: any = defineProps({ ScoreCounter: Number });
-
-const emits = defineEmits(["UpdateScore", "ResetScore"]);
+const emits = defineEmits(["UpdateScore", "UpdateOpponentScore"]);
 
 const Player1 = ref("Rock");
 
@@ -147,10 +145,6 @@ const OptionData: OptionData = {
 };
 
 function HandlePlayAgain() {
-  if (IsLoss.value) {
-    IsLoss.value = !IsLoss.value;
-    emits("ResetScore");
-  }
   IsVisible.value = !IsVisible.value;
 }
 
@@ -185,6 +179,7 @@ function FindWinner(P1: string) {
     emits("UpdateScore");
   } else {
     Result.value = "YOU LOSE.";
+    emits("UpdateOpponentScore");
     IsLoss.value = true;
   }
 }

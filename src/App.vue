@@ -5,14 +5,16 @@ import { ref } from "vue";
 
 const ScoreCounter = ref(0);
 
+const OpponentScore = ref(0);
+
 const RulesIsVisible = ref(false);
 
 function UpdateScore() {
   ScoreCounter.value += 1;
 }
 
-function ResetScore() {
-  ScoreCounter.value = 0;
+function UpdateOpponentScore() {
+  OpponentScore.value += 1;
 }
 
 function HandleRulesVisibility() {
@@ -30,14 +32,13 @@ function HandleRulesVisibility() {
     />
     <div class="ScoreCard">
       <div class="ScoreCard__Text">SCORE</div>
-      <div class="Score">{{ ScoreCounter }}</div>
+      <div class="Score">{{ ScoreCounter }}-{{ OpponentScore }}</div>
     </div>
   </section>
   <section class="GameField">
     <Game
-      :ScoreCounter.sync="ScoreCounter"
       @UpdateScore="UpdateScore"
-      @ResetScore="ResetScore"
+      @UpdateOpponentScore="UpdateOpponentScore"
     />
   </section>
   <button class="Rules" v-on:click="HandleRulesVisibility">RULES</button>
